@@ -11,8 +11,12 @@ public class Deque<Item> implements Iterable<Item> {
 	// construct an empty deque
     public Deque() {
     	
+    	first = new Node();
+    	first.next = null;
+    	first.previous = null;
+    	last = first;
     	
-    	 
+    	
     	
     	
     }
@@ -20,7 +24,7 @@ public class Deque<Item> implements Iterable<Item> {
     // is the deque empty?
     public boolean isEmpty()
     {
-    	return first == null;
+    	return size() == 0;
     }
     
     public int size()
@@ -69,6 +73,7 @@ public class Deque<Item> implements Iterable<Item> {
     		last.previous  = null;
     		first = last;
     		
+    		
     	}
     	else {
     		last.previous = oldlast; 
@@ -83,10 +88,20 @@ public class Deque<Item> implements Iterable<Item> {
     public Item removeFirst()
     {
     	Item item = first.item;
-    	first = first.next;
     	n--;
     	
-    	if(isEmpty()) last = null;
+    	if(isEmpty()) 
+    	{
+    		first = first.next;
+    		last = first;
+    		
+    	}
+    	
+    	else
+    	{
+    	first = first.next;
+        first.previous = null;
+    	}
     	
     	return item;
     }
@@ -95,20 +110,56 @@ public class Deque<Item> implements Iterable<Item> {
     public Item removeLast()
     {
     	Item item = last.item;
-    	last = last.previous;
     	n--;
     	
-    	if(isEmpty()) first = null;
+    	if(isEmpty()) {
     		
+    		last = last.previous;
+    		first = last;
+    	} 
+    	
+    	else
+    	{	
+    	last = last.previous;
+    	last.next = null;
+    	}
+    	
     	return item;
     }
 
     
     
-	
+ // return an iterator over items in order from front to back
 	public Iterator<Item> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return new DequeIterator();
+	}
+	
+	private class DequeIterator implements Iterator<Item>
+	{
+		// initialize current to the first node of the linked list
+		private Node current = first;
+
+		public boolean hasNext() {
+			
+			return current != null;
+		}
+
+		// empty method. we wont be using remove
+		public void remove() {}
+		
+		
+		//return item of current node and move to next node
+		public Item next() {
+			
+			Item item = current.item;
+			current = current.next;
+			return item;
+			
+		}
+		
+		
+		
 	}
 	
 	
@@ -126,13 +177,11 @@ public class Deque<Item> implements Iterable<Item> {
 		
 		
 		System.out.println(test.isEmpty());
-		//test.addFirst("be");
-		test.addLast("can");
-		test.addFirst("be");
-		
+		test.addLast("to");
+		test.addFirst("can");
+		//System.out.println(test.removeFirst());
+		System.out.println(test.removeFirst());
 		System.out.println(test.removeLast());
-		System.out.println(test.removeLast());
-		
 		
 		
 
