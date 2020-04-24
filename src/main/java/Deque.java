@@ -178,12 +178,14 @@ public class Deque<Item> implements Iterable<Item> {
 		
 		System.out.println(test.isEmpty());
 		test.addLast("can");
-		test.addLast("be");
-		test.addLast("to");
-		test.addFirst("will");
 		
 		
-		for (String s : test) System.out.println(s);
+		
+		System.out.println(test.removeLast());
+		
+		
+		
+		//for (String s : test) System.out.println(s);
 		
 		
 
