@@ -1,5 +1,6 @@
 import java.util.Iterator;
 
+
 import edu.princeton.cs.algs4.StdRandom;
 
 
@@ -7,11 +8,13 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 	
 	private Item[] a;
 	private int n; // number of items
+	private int nShuffled; //number of times the array has been shuffled
 	
 	// construct an empty randomized queue
     public RandomizedQueue() {
      a = (Item[]) new Object[1]; //stack of items. Note that we cast Object to Item. 
      n = 0;
+     nShuffled = 0;
     	
     }
 
@@ -19,6 +22,8 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 	public boolean isEmpty() { return n == 0;}
 	
 	public int size() {return n;}
+	
+	private int shuffled() {return nShuffled;}
 	
 	
 	
@@ -58,6 +63,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     	
     	//randomize contents of array
     	StdRandom.shuffle(a, 0, n);
+    	nShuffled++; //increment nShuffled
     	
     	Item item = a[--n];
 		a[n] = null; //Avoid loitering 
@@ -65,32 +71,65 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 		
 		return item;
     	
-    	
     }
+    
+    // return a random item (but do not remove it)
+    public Item sample()
+    {
+    	Item item; 
+    	
+    	int random = StdRandom.uniform(n);
+    	
+    	item = a[random];
+    	return item;
+    }
+    
+    
 	
     
     public Iterator<Item> iterator() {
 		// TODO Auto-generated method stub
-		return null;
+    	return new RandomizedQueueIterator();
 	}
+    
+    
+    private class RandomizedQueueIterator implements Iterator<Item>{
+    	
+    	int i = 0;
+    	
+    	public RandomizedQueueIterator()
+    	{
+    		//randomize contents of array
+        	StdRandom.shuffle(a, 0, n);
+        	
+    	}
+    	
+    	
+    	
+		public boolean hasNext() {
+			//true as long as "i" isn't bigger than the size of our array
+			return i < n;
+		}
+
+		public Item next() {
+			
+			return a[i++];
+		}
+    	
+    }
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
 		RandomizedQueue<String> test = new RandomizedQueue<String>();
 		
-		System.out.println("Begin");
-		
 		test.enqueue("doc");
-		
 		test.enqueue("Lucy");
-		
 		test.enqueue("chipmunk");
 		
-		System.out.println(test.dequeue());
-		System.out.println(test.size());
+		for (String s : test) System.out.println(s);
 		
-		System.out.println("End");
+		
 
 	}
 
