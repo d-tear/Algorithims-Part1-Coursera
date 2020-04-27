@@ -1,6 +1,7 @@
 import java.util.Iterator;
 
 import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
 
 public class Permutation {
 
@@ -8,6 +9,7 @@ public class Permutation {
 		
 		//k is the number of items to sample
 		int k = Integer.parseInt(args[0]);
+		
 		
 		RandomizedQueue<String> q = new RandomizedQueue<String>();
 		
@@ -22,9 +24,17 @@ public class Permutation {
 		
 	 Iterator<String> iterator = q.iterator();
 	 
-	 int i = 0;
+	 int counter = 0;
 	 
-	 while (i <= k) System.out.println(iterator.next());
+	 while (counter < k) 
+	 { 
+		 StdOut.println(iterator.next());
+		 counter++;
+		 
+	 }
+	 
+	 
+	
 
 	}
 
