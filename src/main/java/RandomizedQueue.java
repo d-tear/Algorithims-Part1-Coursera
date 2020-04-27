@@ -163,8 +163,13 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 		
 		System.out.println(test.dequeue());
 		
-		//for (String s : test) System.out.println(s);
+		Iterator<String> iterator = test.iterator();
 		
+		System.out.println(iterator.hasNext());
+		
+		System.out.println(iterator.next());
+		
+	
 		
 
 	}
