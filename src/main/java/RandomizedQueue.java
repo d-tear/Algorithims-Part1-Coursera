@@ -61,7 +61,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     public Item dequeue()
     {
     	
-    	if (n == 0) throw new java.util.NoSuchElementException();
+    	if (isEmpty()) throw new java.util.NoSuchElementException();
     	
     	//select a random array index
     	int random = StdRandom.uniform(n);
@@ -93,6 +93,8 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     // return a random item (but do not remove it)
     public Item sample()
     {
+    	if (isEmpty()) throw new java.util.NoSuchElementException();
+    	
     	Item item; 
     	
     	int random = StdRandom.uniform(n);
