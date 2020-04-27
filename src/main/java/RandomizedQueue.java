@@ -123,7 +123,11 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         	
     	}
     	
-    	
+    	// empty method. we wont be using remove
+    	public void remove() 
+    	{
+    		throw new UnsupportedOperationException();
+    	}
     	
 		public boolean hasNext() {
 			//true as long as "i" isn't bigger than the size of our array
