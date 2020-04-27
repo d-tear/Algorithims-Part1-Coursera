@@ -8,13 +8,13 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 	
 	private Item[] a;
 	private int n; // number of items
-	private int nShuffled; //number of times the array has been shuffled
+	
 	
 	// construct an empty randomized queue
     public RandomizedQueue() {
      a = (Item[]) new Object[1]; //stack of items. Note that we cast Object to Item. 
      n = 0;
-     nShuffled = 0;
+     
     	
     }
 
@@ -23,7 +23,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 	
 	public int size() {return n;}
 	
-	private int shuffled() {return nShuffled;}
+	
 	
 	
 	
