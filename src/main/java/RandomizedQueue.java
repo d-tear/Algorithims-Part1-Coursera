@@ -61,10 +61,14 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     	
     	if (n == 0) throw new java.util.NoSuchElementException();
     	
-    	//randomize contents of array
-    	StdRandom.shuffle(a, 0, n);
-    	nShuffled++; //increment nShuffled
+    	//select a random array index
+    	int random = StdRandom.uniform(n);
     	
+    	//swap the randomly chosen index and the terminal index in the array
+    	swap(random, n-1);
+    	
+    	
+    	//remove the terminal index in the array and resize if necessary
     	Item item = a[--n];
 		a[n] = null; //Avoid loitering 
 		if (n > 0 && n == a.length/4) resize(a.length/2);
@@ -138,7 +142,9 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 		test.enqueue("Lucy");
 		test.enqueue("chipmunk");
 		
-		for (String s : test) System.out.println(s);
+		System.out.println(test.dequeue());
+		
+		//for (String s : test) System.out.println(s);
 		
 		
 
