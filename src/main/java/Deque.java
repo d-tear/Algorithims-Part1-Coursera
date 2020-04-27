@@ -184,6 +184,12 @@ public class Deque<Item> implements Iterable<Item> {
 	
 	public static void main(String[] args) {
 		
+		/* 
+		 * Your main() method must call directly every public constructor and 
+		method to verify that they work as prescribed 
+		(e.g., by printing results to standard output).
+		*/
+		
 		Deque<String> test = new Deque<String>();
 		
 		
@@ -192,15 +198,24 @@ public class Deque<Item> implements Iterable<Item> {
 		test.addLast("two");
 		test.addFirst("three");
 		
+		System.out.println(test.isEmpty());
 		
+		System.out.println(test.size());
+		
+		System.out.println(test.removeFirst());
 		
 		System.out.println(test.removeLast());
 		
 		
 		
-		for (String s : test) System.out.println(s);
+		Iterator<String> iterator = test.iterator();
+		
+		System.out.println(iterator.hasNext());
+		
+		System.out.println(iterator.next());
 		
 		
+
 
 	}
 
