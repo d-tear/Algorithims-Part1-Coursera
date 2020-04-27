@@ -153,7 +153,9 @@ public class Deque<Item> implements Iterable<Item> {
 		}
 
 		// empty method. we wont be using remove
-		public void remove() {}
+		public void remove() {
+			throw new UnsupportedOperationException();
+		}
 		
 		
 		//return item of current node and move to next node
