@@ -144,13 +144,22 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		/* 
+		 * Your main() method must call directly every public constructor and 
+		method to verify that they work as prescribed 
+		(e.g., by printing results to standard output).
+		*/
 		
 		RandomizedQueue<String> test = new RandomizedQueue<String>();
 		
 		test.enqueue("doc");
 		test.enqueue("Lucy");
-		test.enqueue("chipmunk");
+		
+		System.out.println(test.isEmpty());
+		
+		System.out.println(test.size());
+		
+		System.out.println(test.sample());
 		
 		System.out.println(test.dequeue());
 		
