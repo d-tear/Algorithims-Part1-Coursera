@@ -90,6 +90,8 @@ public class Deque<Item> implements Iterable<Item> {
     // remove and return the item from the front
     public Item removeFirst()
     {
+    	if (isEmpty()) throw new java.util.NoSuchElementException();
+    	
     	Item item = first.item;
     	n--;
     	
@@ -112,6 +114,8 @@ public class Deque<Item> implements Iterable<Item> {
     // remove and return the item from the back
     public Item removeLast()
     {
+    	if (isEmpty()) throw new java.util.NoSuchElementException();
+    	
     	Item item = last.item;
     	n--;
     	
