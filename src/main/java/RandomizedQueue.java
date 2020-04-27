@@ -73,6 +73,17 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     	
     }
     
+    //exchange entries at two indices in the array
+    private void swap(int i, int j)
+    {
+    	Item temp = a[i];
+    	
+    	a[i] = a[j];
+    	
+    	a[j] = temp;
+    	
+    }
+    
     // return a random item (but do not remove it)
     public Item sample()
     {
