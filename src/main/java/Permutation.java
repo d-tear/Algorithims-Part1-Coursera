@@ -24,7 +24,7 @@ public class Permutation {
 	 
 	 int i = 0;
 	 
-	 while (i <= k) System.out.println(iterator.hasNext());
+	 while (i <= k) System.out.println(iterator.next());
 
 	}
 
