@@ -159,6 +159,8 @@ public class Deque<Item> implements Iterable<Item> {
 		//return item of current node and move to next node
 		public Item next() {
 			
+			if (!hasNext()) throw new java.util.NoSuchElementException();
+			
 			Item item = current.item;
 			current = current.next;
 			return item;
@@ -183,8 +185,10 @@ public class Deque<Item> implements Iterable<Item> {
 		Deque<String> test = new Deque<String>();
 		
 		
-		System.out.println(test.isEmpty());
+		
 		test.addLast("can");
+		test.addLast("two");
+		test.addFirst("three");
 		
 		
 		
@@ -192,7 +196,7 @@ public class Deque<Item> implements Iterable<Item> {
 		
 		
 		
-		//for (String s : test) System.out.println(s);
+		for (String s : test) System.out.println(s);
 		
 		
 
