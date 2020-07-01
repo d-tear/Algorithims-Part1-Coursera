@@ -64,6 +64,32 @@ public class Point implements Comparable<Point>{
 	     */
 	    public double slopeTo(Point that) {
 	        /* YOUR CODE HERE */
+	    	
+	    	double slope;
+	    	
+	    	//horizontal line occurs when y values are equal but x values are not
+	    	if (that.y == this.y && that.x != this.x) {
+	    		slope = +0.0;
+	    		return slope;
+	    	}
+	    	
+	    	//vertical line occurs when x values are equal but y values are not
+	    	else if (that.y != this.y && that.x == this.x) {
+	    		slope = Double.POSITIVE_INFINITY;
+	    		return slope;
+	    	}
+	    		
+	    	//equal points occur when x and y coordinates are equal
+	    	else if (that.y == this.y && that.x == this.x) {
+	    		slope = Double.NEGATIVE_INFINITY;
+	    		return slope;
+	    	}
+	    	
+	    	else {
+	    	slope = (that.y - this.y)/(that.x - this.x);
+	    	return slope;
+	    	}
+	    	
 	    }
 
 	    /**
