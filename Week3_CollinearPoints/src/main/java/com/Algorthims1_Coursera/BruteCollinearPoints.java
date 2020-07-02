@@ -1,24 +1,35 @@
 package com.Algorthims1_Coursera;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import edu.princeton.cs.algs4.Selection;
+import edu.princeton.cs.algs4.StdRandom;
 
 public class BruteCollinearPoints {
 
 	public BruteCollinearPoints(Point[] points) {   // finds all line segments containing 4 points
-	Selection.sort(points, points[0].slopeOrder());
+	
 		
 	}
 	
 	public int numberOfSegments() { // the number of line segments
-	return 0; //code to do
+	
+		return segments().length;
 	
 	}
 	
+	private findAllFourTuples()
+	
 	 public LineSegment[] segments() { // the line segments
 	 
+		 StdRandom.permutation(n, k);
 		 ArrayList<LineSegment> lineSegments = new ArrayList<LineSegment>();
+		 
+		 S
+		 
+		 
+		 
 		 
 		 //need to convert to type Array
 		 
