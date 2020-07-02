@@ -106,6 +106,20 @@ public class Point implements Comparable<Point>{
 	     */
 	    public int compareTo(Point that) {
 	        /* YOUR CODE HERE */
+	    	
+	    	//equal points
+	    	if (this.y == that.y && this.x == that.x) {return 0;}
+	    	
+	    	//this point is less than that point
+	    	else if( this.y < that.y || (this.y == that.y && this.x < that.x) ) {return -1;}
+	    	
+	    	//if this point is not equal to or less than that point, it must be greater
+	    	else return +1;
+	    		
+	    	
+	    	
+	    
+	    	
 	    }
 
 	    /**
@@ -116,6 +130,25 @@ public class Point implements Comparable<Point>{
 	     */
 	    public Comparator<Point> slopeOrder() {
 	        /* YOUR CODE HERE */
+	    	
+	    	return new SlopeOrder();
+	    }
+	    
+	    
+	    private class SlopeOrder implements Comparator<Point>{
+	    	
+	    	public int compare(Point a, Point b) {
+	    		
+	    		if ( slopeTo(a) == slopeTo(b) ) {return 0;}
+	    		
+	    		else if (slopeTo(a) > slopeTo(b) ) {return +1;}
+	    		
+	    		//if not equal to or greater than, slope(a) is < slope(b)
+	    		else return -1;
+	    	}
+	    
+	    	
+	    	
 	    }
 
 
@@ -135,7 +168,13 @@ public class Point implements Comparable<Point>{
 	     * Unit tests the Point data type.
 	     */
 	    public static void main(String[] args) {
-	        /* YOUR CODE HERE */
+	        Point a = new Point(0,0);
+	        Point b = new Point(1,1);
+	        Point c = new Point(1,3);
+	        
+	        System.out.println(a.slopeOrder().compare(b, c));
+	        
+	        		
 	    }
 
 }
