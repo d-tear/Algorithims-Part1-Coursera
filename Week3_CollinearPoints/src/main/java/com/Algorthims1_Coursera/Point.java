@@ -171,9 +171,11 @@ public class Point implements Comparable<Point>{
 	        Point a = new Point(0,0);
 	        Point b = new Point(1,1);
 	        Point c = new Point(1,3);
+	        Point d = new Point(1,1);
 	        
 	        System.out.println(a.slopeOrder().compare(b, c));
-	        
+	        System.out.println(a.slopeOrder().compare(b, d));
+	        System.out.println(a.slopeOrder().compare(c, b));
 	        		
 	    }
 
