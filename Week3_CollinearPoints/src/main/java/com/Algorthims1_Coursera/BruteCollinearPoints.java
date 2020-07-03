@@ -24,6 +24,18 @@ public class BruteCollinearPoints {
 	}
 	
 	
+	//is the given point inside a given array of points
+	private boolean insidePointArray(Point[] inPoints, Point point) {
+		
+		for (Point p : inPoints) {
+	    	  if (p.equals(point)) {
+	    	  return true;
+	    	  }
+	}
+		return false;
+		}
+	
+	
 	
 	 public LineSegment[] segments() { // the line segments
 	  
