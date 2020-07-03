@@ -8,8 +8,12 @@ import edu.princeton.cs.algs4.StdRandom;
 
 public class BruteCollinearPoints {
 
+	private Point[] points;
+	
+	//shallow copy the array of immutable points
 	public BruteCollinearPoints(Point[] points) {   // finds all line segments containing 4 points
 	
+		this.points = points.clone();
 		
 	}
 	
@@ -19,17 +23,10 @@ public class BruteCollinearPoints {
 	
 	}
 	
-	private findAllFourTuples()
+	
 	
 	 public LineSegment[] segments() { // the line segments
-	 
-		 StdRandom.permutation(n, k);
-		 ArrayList<LineSegment> lineSegments = new ArrayList<LineSegment>();
-		 
-		 S
-		 
-		 
-		 
+	  
 		 
 		 //need to convert to type Array
 		 
