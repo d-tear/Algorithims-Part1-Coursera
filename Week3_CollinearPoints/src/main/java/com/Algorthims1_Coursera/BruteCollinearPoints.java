@@ -13,6 +13,13 @@ public class BruteCollinearPoints {
 	//shallow copy the array of immutable points
 	public BruteCollinearPoints(Point[] points) {   // finds all line segments containing 4 points
 	
+		if (points == null) throw new IllegalArgumentException();
+		
+		for (Point p : points) {
+			if (p == null) throw new IllegalArgumentException();
+		}
+		
+		
 		this.points = points.clone();
 		
 	}
@@ -36,8 +43,8 @@ public class BruteCollinearPoints {
 		return false;
 		}
 	
-	//are two points collinear
-	private boolean isCollinear(Point a, Point b) {
+	//are two points equal (i.e. have same x and y coordinates)
+	private boolean isEqual(Point a, Point b) {
 		
 		if ( a.compareTo(b) == 0 ) return true;
 		
@@ -46,7 +53,8 @@ public class BruteCollinearPoints {
 	}
 	
 	
-	//finds all tuples of size four
+	//finds all tuples of size four. This is used in the constructor with the given points array. 
+	//That's why it takes no arguments
 	private ArrayList<ArrayList<Point>> fourTuples() {
 		
 		ArrayList<Point> innerList = new ArrayList<Point>();
@@ -88,6 +96,24 @@ public class BruteCollinearPoints {
 			 }
 		return outerList;
 		}
+	
+	
+	//determines if all points are equal (i.e. if any points have the same x AND y values)
+	private boolean isRepeated() {
+		
+		for (int i = 0; i < points.length; i ++) {
+			
+			for (int j = i + 1; j < points.length; j ++) {
+				
+				if ( points[i].compareTo(points[j]) == 0 ) {return true;}
+				
+				
+			}
+		}
+		
+		return false;
+		
+	}
 		
 
 	
@@ -121,6 +147,8 @@ public class BruteCollinearPoints {
 		BruteCollinearPoints bcp = new BruteCollinearPoints(array);
 		
 		bcp.fourTuples();
+		
+		System.out.println(bcp.isRepeated());
 		
 		System.out.println(Arrays.deepToString(bcp.fourTuples().toArray()));
 
