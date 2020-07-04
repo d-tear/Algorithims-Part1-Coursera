@@ -32,6 +32,25 @@ public class BruteCollinearPoints {
 	//}
 	
 	
+	
+	//are all four points collinear? 
+	//This method cycles through the nested ArrayLists returned from fourTuples()
+	private boolean allFourCollinear(ArrayList<Point> array) {
+		
+		Point a = array.get(0);
+		
+		Point b = array.get(1);
+		
+		Point c = array.get(2);
+		
+		Point d = array.get(3);
+				
+		if (a.slopeTo(b) == a.slopeTo(c) && a.slopeTo(c) == c.slopeTo(d)) {return true;}
+		
+		return false;
+	}
+	
+	
 	//is the given point inside a given array of points
 	private boolean insidePointArray(Point[] inPoints, Point point) {
 		
@@ -148,7 +167,7 @@ public class BruteCollinearPoints {
 		
 		bcp.fourTuples();
 		
-		System.out.println(bcp.isRepeated());
+		for ()
 		
 		System.out.println(Arrays.deepToString(bcp.fourTuples().toArray()));
 
