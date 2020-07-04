@@ -13,11 +13,17 @@ public class BruteCollinearPoints {
 	//shallow copy the array of immutable points
 	public BruteCollinearPoints(Point[] points) {   // finds all line segments containing 4 points
 	
+		//ensure constructor argument isn't null
 		if (points == null) throw new IllegalArgumentException();
 		
+		//ensure no points inside contructor aregument are null
 		for (Point p : points) {
 			if (p == null) throw new IllegalArgumentException();
 		}
+		
+		
+		//ensure the argument to the constructor contains no repeated points
+		if (BruteCollinearPoints.isRepeated(points)) throw new IllegalArgumentException("All points must be unique!");
 		
 		
 		this.points = points.clone();
@@ -51,16 +57,7 @@ public class BruteCollinearPoints {
 	}
 	
 	
-	//is the given point inside a given array of points
-	private boolean insidePointArray(Point[] inPoints, Point point) {
-		
-		for (Point p : inPoints) {
-	    	  if (p.equals(point)) {
-	    	  return true;
-	    	  }
-	}
-		return false;
-		}
+	
 	
 	//are two points equal (i.e. have same x and y coordinates)
 	private boolean isEqual(Point a, Point b) {
@@ -118,7 +115,8 @@ public class BruteCollinearPoints {
 	
 	
 	//determines if all points are equal (i.e. if any points have the same x AND y values)
-	private boolean isRepeated() {
+	//this is useful inside the constructor
+	private static boolean isRepeated(Point[] points ) {
 		
 		for (int i = 0; i < points.length; i ++) {
 			
@@ -158,16 +156,21 @@ public class BruteCollinearPoints {
 		Point a = new Point(0,0);
         Point b = new Point(1,1);
         Point c = new Point(1,3);
-        Point d = new Point(1,1);
+        Point d = new Point(2,2);
         Point e = new Point(2,5);
+        Point f = new Point(3,3);
+        Point g = new Point(4,4);
         
-        Point[] array = new Point[] {a,b,c,d,e};
+        Point[] array = new Point[] {a,b,c,d,e,f,g};
         
 		BruteCollinearPoints bcp = new BruteCollinearPoints(array);
 		
-		bcp.fourTuples();
 		
-		for ()
+		for (ArrayList<Point> p_array :bcp.fourTuples()) {
+			
+			System.out.println(bcp.allFourCollinear(p_array));
+		}
+		
 		
 		System.out.println(Arrays.deepToString(bcp.fourTuples().toArray()));
 
