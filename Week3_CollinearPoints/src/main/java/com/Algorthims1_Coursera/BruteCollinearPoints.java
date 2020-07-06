@@ -195,15 +195,27 @@ public class BruteCollinearPoints {
         
 		BruteCollinearPoints bcp = new BruteCollinearPoints(array);
 		
-		System.out.println(Arrays.deepToString(bcp.fourTuples().toArray()));
+		//System.out.println(Arrays.deepToString(bcp.fourTuples().toArray()));
 		
-		System.out.println(bcp.fourTuples().size());
+		//System.out.println(bcp.fourTuples().size());
 		
 		//System.out.println(Arrays.toString(bcp.points));
 		
 		//Arrays.parallelSort(bcp.points);
 		
 		//System.out.println( Arrays.toString(bcp.points));
+		
+		
+		
+		for (Point[] p_array :bcp.fourTuples()) {
+			
+			if (bcp.allFourCollinear(p_array)) {
+	 		  System.out.println(Arrays.toString(p_array));
+	 		  }
+			
+			
+
+	 	}
 		
 		System.out.println(Arrays.toString(bcp.segments()));
 		
