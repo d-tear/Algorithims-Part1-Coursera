@@ -136,34 +136,49 @@ public class BruteCollinearPoints {
 	
 	
 	
-	/*
-	 * public LineSegment[] segments() { // the line segments
-	 * 
-	 * ArrayList<LineSegment> segments = new ArrayList<LineSegment>();
-	 * 
-	 * 
-	 * 
-	 * int segment_counter = 0;
-	 * 
-	 * //cycle through all tuples of size four from the Point array given to the
-	 * constructor for (ArrayList<Point> point_array : fourTuples()) {
-	 * 
-	 * if (allFourCollinear(point_array)){
-	 * 
-	 * segment_counter++;
-	 * 
-	 * 
-	 * 
-	 * } }
-	 * 
-	 * 
-	 * 
-	 * //need to convert to type Array //LineSegment[] arrayLineSegments =
-	 * lineSegments.toArray(new LineSegment[lineSegments.size()]);
-	 * 
-	 * }
-	 * 
-	 */
+	
+	  public LineSegment[] segments() { // the line segments
+	  
+	  ArrayList<LineSegment> segments = new ArrayList<LineSegment>();
+	  
+	  
+	  
+	  int segment_counter = 0;
+	  
+	  
+	  //cycle through all tuples of size four from the Point array given to the constructor 	  
+	  for (Point[] point_array : fourTuples()) {
+	  
+	  if (allFourCollinear(point_array)){
+	  
+	  segment_counter++;
+	  
+	  //sort point array so that the first and last indices (0 and 3) are the points which are farthest away
+	  Arrays.parallelSort(point_array);
+	  
+	  LineSegment endpoints = new LineSegment(point_array[0], point_array[3]);
+	  
+	  
+	  segments.add(endpoints);
+	  
+	  
+	  } 
+	  
+	  
+	  }
+	  
+	  //convert ArrayList to Array
+	  LineSegment[] segs = new LineSegment[segments.size()];
+	  
+	  segs = segments.toArray(segs);
+	  
+	  return segs;
+	  
+	  
+	  
+	  }
+	  
+	 
 		 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -180,19 +195,17 @@ public class BruteCollinearPoints {
         
 		BruteCollinearPoints bcp = new BruteCollinearPoints(array);
 		
-		
-		System.out.println(Arrays.toString(bcp.points));
-		
-		Arrays.parallelSort(bcp.points);
-		
-		System.out.println( Arrays.toString(bcp.points));
-		
 		System.out.println(Arrays.deepToString(bcp.fourTuples().toArray()));
 		
-		  for (Point[] p_array :bcp.fourTuples()) {
-		  
-		  System.out.println(bcp.allFourCollinear(p_array)); } 
-
-			}
-
+		System.out.println(bcp.fourTuples().size());
+		
+		//System.out.println(Arrays.toString(bcp.points));
+		
+		//Arrays.parallelSort(bcp.points);
+		
+		//System.out.println( Arrays.toString(bcp.points));
+		
+		System.out.println(Arrays.toString(bcp.segments()));
+		
+		 }
 }
