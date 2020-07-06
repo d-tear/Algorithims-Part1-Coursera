@@ -1,10 +1,12 @@
 package com.Algorthims1_Coursera;
 
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import edu.princeton.cs.algs4.Selection;
 import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.SET;
 
 public class BruteCollinearPoints {
 
@@ -16,7 +18,7 @@ public class BruteCollinearPoints {
 		//ensure constructor argument isn't null
 		if (points == null) throw new IllegalArgumentException();
 		
-		//ensure no points inside contructor aregument are null
+		//ensure no points inside constructor argument are null
 		for (Point p : points) {
 			if (p == null) throw new IllegalArgumentException();
 		}
@@ -28,14 +30,20 @@ public class BruteCollinearPoints {
 		
 		this.points = points.clone();
 		
+		//Initially sorting this array by y-value will ensure that the tuples returned by fourTuples will also be sorted by 
+		//y-value.
+		Arrays.parallelSort(this.points);
+		
+		
+		
 	}
 	
-	//public int numberOfSegments() { // the number of line segments
+	public int numberOfSegments() { // the number of line segments
 	
 		
-		//return segments().length;
+		return segments().length;
 	
-	//}
+	}
 	
 	
 	
@@ -102,6 +110,7 @@ public class BruteCollinearPoints {
 					 innerList[2] = points[k];
 					 
 					 innerList[3] = points[z];
+					 
 	
 					 outerList.add(innerList);
 					 }
@@ -137,25 +146,27 @@ public class BruteCollinearPoints {
 	
 	
 	
-	  public LineSegment[] segments() { // the line segments
+	public LineSegment[] segments() { // the line segments
+		
+	
 	  
 	  ArrayList<LineSegment> segments = new ArrayList<LineSegment>();
 	  
-	  
-	  
-	  int segment_counter = 0;
-	  
-	  
-	  //cycle through all tuples of size four from the Point array given to the constructor 	  
+	  	  
+	  //cycle through all tuples of size four from the Point array given to the constructor 	
+	  //remember that these points are already sorted by natural order because we did this in the constructor
 	  for (Point[] point_array : fourTuples()) {
+		  
+	
+		  //I think somehow that ordering by sloepOrder is important in removing duplicate segments
+		  //not sure how though without using sets.
+	  Arrays.parallelSort(point_array, point_array[0].slopeOrder());
 	  
 	  if (allFourCollinear(point_array)){
+
+	  Double slope = point_array[0].slopeTo(point_array[3]);
 	  
-	  segment_counter++;
-	  
-	  //sort point array so that the first and last indices (0 and 3) are the points which are farthest away
-	  Arrays.parallelSort(point_array);
-	  
+ 
 	  LineSegment endpoints = new LineSegment(point_array[0], point_array[3]);
 	  
 	  
@@ -195,9 +206,9 @@ public class BruteCollinearPoints {
         
 		BruteCollinearPoints bcp = new BruteCollinearPoints(array);
 		
-		//System.out.println(Arrays.deepToString(bcp.fourTuples().toArray()));
+		System.out.println(Arrays.deepToString(bcp.fourTuples().toArray()));
 		
-		//System.out.println(bcp.fourTuples().size());
+		System.out.println(bcp.fourTuples().size());
 		
 		//System.out.println(Arrays.toString(bcp.points));
 		
