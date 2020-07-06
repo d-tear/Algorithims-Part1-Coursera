@@ -40,16 +40,16 @@ public class BruteCollinearPoints {
 	
 	
 	//are all four points collinear? 
-	//This method cycles through the nested ArrayLists returned from fourTuples()
-	private boolean allFourCollinear(ArrayList<Point> array) {
+	//This method cycles through the nested Point arrays returned from fourTuples()
+	private boolean allFourCollinear(Point[] array) {
 		
-		Point a = array.get(0);
+		Point a = array[0];
 		
-		Point b = array.get(1);
+		Point b = array[1];
 		
-		Point c = array.get(2);
+		Point c = array[2];
 		
-		Point d = array.get(3);
+		Point d = array[3];
 				
 		if (a.slopeTo(b) == a.slopeTo(c) && a.slopeTo(c) == c.slopeTo(d)) {return true;}
 		
@@ -71,11 +71,10 @@ public class BruteCollinearPoints {
 	
 	//finds all tuples of size four. This is used in the constructor with the given points array. 
 	//That's why it takes no arguments
-	private ArrayList<ArrayList<Point>> fourTuples() {
+	private ArrayList<Point[]> fourTuples() {
 		
-		ArrayList<Point> innerList = new ArrayList<Point>();
 		
-		ArrayList<ArrayList<Point>> outerList = new ArrayList<ArrayList<Point>>();
+		ArrayList<Point[]> outerList = new ArrayList<Point[]>();
 		
 		for (int i = 0; i < points.length; i ++) {
 			
@@ -94,16 +93,16 @@ public class BruteCollinearPoints {
 					 for (int z = k + 1; z < points.length; z++) {
 				 
 					 
-					 innerList = new ArrayList<Point>();
-				 
-					 innerList.add(points[i]);
-				 	 
-				 	 innerList.add(points[j]);
-				 	 
-					 innerList.add(points[k]);
+					 Point [] innerList = new Point[4];
 					 
-					 innerList.add(points[z]);
+					 innerList[0] = points[i];
 					 
+					 innerList[1] = points[j];
+					 
+					 innerList[2] = points[k];
+					 
+					 innerList[3] = points[z];
+	
 					 outerList.add(innerList);
 					 }
 				 }
@@ -137,18 +136,34 @@ public class BruteCollinearPoints {
 	
 	
 	
-	 //public LineSegment[] segments() { // the line segments
-	  
-		 //ArrayList<LineSegment> str = new ArrayList<LineSegment>();
-				 
-		 
-		 //need to convert to type Array
-		 
-		 //LineSegment[] arrayLineSegments = lineSegments.toArray(new LineSegment[lineSegments.size()]);
-	 
-	 //}
-	 
-	 
+	/*
+	 * public LineSegment[] segments() { // the line segments
+	 * 
+	 * ArrayList<LineSegment> segments = new ArrayList<LineSegment>();
+	 * 
+	 * 
+	 * 
+	 * int segment_counter = 0;
+	 * 
+	 * //cycle through all tuples of size four from the Point array given to the
+	 * constructor for (ArrayList<Point> point_array : fourTuples()) {
+	 * 
+	 * if (allFourCollinear(point_array)){
+	 * 
+	 * segment_counter++;
+	 * 
+	 * 
+	 * 
+	 * } }
+	 * 
+	 * 
+	 * 
+	 * //need to convert to type Array //LineSegment[] arrayLineSegments =
+	 * lineSegments.toArray(new LineSegment[lineSegments.size()]);
+	 * 
+	 * }
+	 * 
+	 */
 		 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -166,14 +181,18 @@ public class BruteCollinearPoints {
 		BruteCollinearPoints bcp = new BruteCollinearPoints(array);
 		
 		
-		for (ArrayList<Point> p_array :bcp.fourTuples()) {
-			
-			System.out.println(bcp.allFourCollinear(p_array));
-		}
+		System.out.println(Arrays.toString(bcp.points));
 		
+		Arrays.parallelSort(bcp.points);
+		
+		System.out.println( Arrays.toString(bcp.points));
 		
 		System.out.println(Arrays.deepToString(bcp.fourTuples().toArray()));
+		
+		  for (Point[] p_array :bcp.fourTuples()) {
+		  
+		  System.out.println(bcp.allFourCollinear(p_array)); } 
 
-	}
+			}
 
 }
