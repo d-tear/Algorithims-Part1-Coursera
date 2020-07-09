@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import edu.princeton.cs.algs4.Selection;
+import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.SET;
 
@@ -267,11 +268,17 @@ public class BruteCollinearPoints {
         Point h = new Point(6000,7000);
         
         
-        Point[] array = new Point[] {a,b,c,d,e,f,g,h};
+        Point[] points = new Point[] {a,b,c,d,e,f,g,h};
         
-		BruteCollinearPoints bcp = new BruteCollinearPoints(array);
+     // print and draw the line segments
+        BruteCollinearPoints collinear = new BruteCollinearPoints(points);
+        for (LineSegment segment : collinear.segments()) {
+            StdOut.println(segment);
+        }
+        
+		//BruteCollinearPoints bcp = new BruteCollinearPoints(array);
 		
-		System.out.println(Arrays.deepToString(bcp.fourTuples().toArray()));
+		//System.out.println(Arrays.deepToString(bcp.fourTuples().toArray()));
 		
 		//System.out.println(bcp.fourTuples().size());
 		
@@ -284,17 +291,18 @@ public class BruteCollinearPoints {
 		
 		//System.out.println( Arrays.toString(bcp.points));
 		
-		for (Point[] p_array : bcp.fourTuples()) {
-			
-			if (bcp.allFourCollinear(p_array)) {
-	 		  System.out.println(Arrays.toString(p_array));
-	 		  }
-			
-			
-
-	 	}
+		/*
+		 * for (Point[] p_array : bcp.fourTuples()) {
+		 * 
+		 * if (bcp.allFourCollinear(p_array)) {
+		 * System.out.println(Arrays.toString(p_array)); }
+		 * 
+		 * 
+		 * 
+		 * }
+		 */
 		
-		System.out.println(Arrays.toString(bcp.segments()));
+		//System.out.println(Arrays.toString(bcp.segments()));
 		
 		 }
 }
