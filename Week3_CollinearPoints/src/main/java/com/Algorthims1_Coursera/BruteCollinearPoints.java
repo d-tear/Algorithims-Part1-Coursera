@@ -65,9 +65,11 @@ public class BruteCollinearPoints {
 		
 		Point d = array[3];
 				
-		if (a.slopeTo(b) == a.slopeTo(c) && a.slopeTo(c) == c.slopeTo(d)) {return true;}
+		if (a.slopeTo(b) == a.slopeTo(c) && a.slopeTo(c) == a.slopeTo(d)) {return true;}
 		
+		else {
 		return false;
+		}
 	}
 	
 	
@@ -286,7 +288,7 @@ public class BruteCollinearPoints {
 		
 		//System.out.println( Arrays.toString(bcp.points));
 		
-		for (Point[] p_array :bcp.fourTuples()) {
+		for (Point[] p_array : bcp.fourTuples()) {
 			
 			if (bcp.allFourCollinear(p_array)) {
 	 		  System.out.println(Arrays.toString(p_array));
