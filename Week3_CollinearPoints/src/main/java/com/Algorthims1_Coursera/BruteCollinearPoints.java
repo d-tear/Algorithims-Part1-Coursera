@@ -238,8 +238,14 @@ public class BruteCollinearPoints {
 	  
 	  }
 	  
-	  if (segments.size() == 0) { //ensures we add the maxsegment if there's only one unique collinear segment
-	  segments.add(maxsegment);
+	  if (segments.size() == 0) { //only tripped if there were no collinear segments or only one
+	  
+		  if (maxsegment == null) {
+			  //do nothing. there were no collinear segments of size >= 4
+		  }
+		  else{
+			  segments.add(maxsegment); //there was only one collinear segment of size >= 4
+			  }
 	  }
 	  
 	  //convert ArrayList to Array
@@ -258,23 +264,30 @@ public class BruteCollinearPoints {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Point a = new Point(10000,0);
-        Point b = new Point(0, 10000);
-        Point c = new Point(3000, 7000);
-        Point d = new Point(7000, 3000);
-        Point e = new Point(20000,21000);
-        Point f = new Point(3000, 4000);
-        Point g = new Point(14000,15000);
-        Point h = new Point(6000,7000);
+		//Point a = new Point(10000,0);
+        //Point b = new Point(0, 10000);
+        //Point c = new Point(3000, 7000);
+        //Point d = new Point(7000, 3000);
+        //Point e = new Point(20000,21000);
+        //Point f = new Point(3000, 4000);
+        //Point g = new Point(14000,15000);
+        //Point h = new Point(6000,7000);
         
+		Point a = new Point(1,3);
+        Point b = new Point(3, 3);
+        Point c = new Point(4, 4);
+        Point d = new Point(2, 5);
         
-        Point[] points = new Point[] {a,b,c,d,e,f,g,h};
+        Point[] points = new Point[] {a,b,c,d};
         
      // print and draw the line segments
         BruteCollinearPoints collinear = new BruteCollinearPoints(points);
         for (LineSegment segment : collinear.segments()) {
             StdOut.println(segment);
         }
+        
+        
+        
         
 		//BruteCollinearPoints bcp = new BruteCollinearPoints(array);
 		
