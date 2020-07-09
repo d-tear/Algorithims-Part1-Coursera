@@ -32,7 +32,13 @@ public class BruteCollinearPoints {
 		
 		//Initially sorting this array by y-value will ensure that the tuples returned by fourTuples will also be sorted by 
 		//y-value.
+		
 		Arrays.parallelSort(this.points);
+		
+		//Arrays.parallelSort(this.points, this.points[0].slopeOrder());
+		
+		
+		
 		
 		
 		
@@ -142,7 +148,17 @@ public class BruteCollinearPoints {
 		
 
 	
-	
+	/**
+     * Returns a LineSegment of the first and last points in the given Point array
+     * Assumes point array is only of length 4
+     *
+     * @param points an array of points
+     * @return a line segment of the first and last points in the given Point array
+     */
+	private LineSegment getEndPoints(Point[] points) {
+		
+		return new LineSegment(points[0], points[3]);
+	}
 	
 	
 	
@@ -152,25 +168,76 @@ public class BruteCollinearPoints {
 	  
 	  ArrayList<LineSegment> segments = new ArrayList<LineSegment>();
 	  
+	  //record origin/base point
+	  Point origin = this.points[0];//overall lowest point bc we ordered the points by natural order in the constructor
+	  
+	  int counter = 0; //useful for finding the very first collinear line segment
+
+	  double current_slope = Double.NaN; // use this to record the current slope
+	  
+	  LineSegment maxsegment = null; //use this to record the current max line segment
 	  	  
 	  //cycle through all tuples of size four from the Point array given to the constructor 	
 	  //remember that these points are already sorted by natural order because we did this in the constructor
 	  for (Point[] point_array : fourTuples()) {
 		  
 	
-		  //I think somehow that ordering by sloepOrder is important in removing duplicate segments
-		  //not sure how though without using sets.
-	  Arrays.parallelSort(point_array, point_array[0].slopeOrder());
+		
 	  
 	  if (allFourCollinear(point_array)){
+		  
+	
+	  //Arrays.parallelSort(point_array, origin.slopeOrder());
 
-	  Double slope = point_array[0].slopeTo(point_array[3]);
+		if (counter == 0) { //only enter if its the very first collinear segment
+			
+			counter++;
+			
+			if (point_array[0] == origin) { //check if overall lowest point is the origin for this segment
+				maxsegment = getEndPoints(point_array);
+				current_slope = origin.slopeTo(point_array[1]);
+			}
+			
+			else { //if we passed the overall lowest point, update origin to reflect that
+				origin = point_array[0];
+				maxsegment = getEndPoints(point_array);
+				current_slope = origin.slopeTo(point_array[1]);
+				
+			}
+		}
+		
+		
+		
+		//given the same origin and slope, this is the largest segment seen so far bc of ordering in constructor
+		else if (point_array[0] == origin && point_array[0].slopeTo(point_array[1]) == current_slope){
+			
+			maxsegment = getEndPoints(point_array);
+			
+		}
+		
+		
+		else if(point_array[0] != origin && point_array[0].slopeTo(point_array[1]) == current_slope) {
+			//do nothing. if this code block is tripped, it means we found a subsegment of the current maxsegment
+		}
+		  
+		
+		//this is a new line segment with the existing origin. We can add the existing maxsegment to the array and update maxsegment
+		else if(point_array[0] == origin && point_array[0].slopeTo(point_array[1]) != current_slope) {
+			
+			segments.add(maxsegment);
+			maxsegment = getEndPoints(point_array);
+			current_slope = origin.slopeTo(point_array[1]);
+			
+		}
+	 
+		//new origin with new slope
+		else {
+			segments.add(maxsegment);
+			origin = point_array[0];
+			maxsegment = getEndPoints(point_array);
+			current_slope = origin.slopeTo(point_array[1]);
+		}
 	  
- 
-	  LineSegment endpoints = new LineSegment(point_array[0], point_array[3]);
-	  
-	  
-	  segments.add(endpoints);
 	  
 	  
 	  } 
@@ -208,15 +275,16 @@ public class BruteCollinearPoints {
 		
 		System.out.println(Arrays.deepToString(bcp.fourTuples().toArray()));
 		
-		System.out.println(bcp.fourTuples().size());
+		//System.out.println(bcp.fourTuples().size());
 		
 		//System.out.println(Arrays.toString(bcp.points));
 		
-		//Arrays.parallelSort(bcp.points);
+		//Arrays.parallelSort(bcp.points, bcp.points[0].slopeOrder());
+		
+		//System.out.println(Arrays.toString(bcp.points));
+		
 		
 		//System.out.println( Arrays.toString(bcp.points));
-		
-		
 		
 		for (Point[] p_array :bcp.fourTuples()) {
 			
