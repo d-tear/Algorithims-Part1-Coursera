@@ -257,14 +257,15 @@ public class BruteCollinearPoints {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Point a = new Point(0,0);
-        Point b = new Point(5,5);
-        Point c = new Point(1,3);
-        Point d = new Point(2,2);
-        Point e = new Point(2,5);
-        Point f = new Point(3,3);
-        Point g = new Point(1,1);
-        Point h = new Point(7,7);
+		Point a = new Point(10000,0);
+        Point b = new Point(0, 10000);
+        Point c = new Point(3000, 7000);
+        Point d = new Point(7000, 3000);
+        Point e = new Point(20000,21000);
+        Point f = new Point(3000, 4000);
+        Point g = new Point(14000,15000);
+        Point h = new Point(6000,7000);
+        
         
         Point[] array = new Point[] {a,b,c,d,e,f,g,h};
         
