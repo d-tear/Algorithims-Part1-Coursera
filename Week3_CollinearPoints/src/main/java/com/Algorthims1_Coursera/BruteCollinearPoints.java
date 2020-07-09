@@ -73,17 +73,7 @@ public class BruteCollinearPoints {
 	}
 	
 	
-	
-	
-	//are two points equal (i.e. have same x and y coordinates)
-	private boolean isEqual(Point a, Point b) {
 		
-		if ( a.compareTo(b) == 0 ) return true;
-		
-		else 
-			return false;
-	}
-	
 	
 	//finds all tuples of size four. This is used in the constructor with the given points array. 
 	//That's why it takes no arguments
@@ -247,6 +237,10 @@ public class BruteCollinearPoints {
 	  
 	  }
 	  
+	  if (segments.size() == 0) { //ensures we add the maxsegment if there's only one unique collinear segment
+	  segments.add(maxsegment);
+	  }
+	  
 	  //convert ArrayList to Array
 	  LineSegment[] segs = new LineSegment[segments.size()];
 	  
@@ -264,14 +258,15 @@ public class BruteCollinearPoints {
 		// TODO Auto-generated method stub
 		
 		Point a = new Point(0,0);
-        Point b = new Point(1,1);
+        Point b = new Point(5,5);
         Point c = new Point(1,3);
         Point d = new Point(2,2);
         Point e = new Point(2,5);
         Point f = new Point(3,3);
-        Point g = new Point(4,4);
+        Point g = new Point(1,1);
+        Point h = new Point(7,7);
         
-        Point[] array = new Point[] {a,b,c,d,e,f,g};
+        Point[] array = new Point[] {a,b,c,d,e,f,g,h};
         
 		BruteCollinearPoints bcp = new BruteCollinearPoints(array);
 		
