@@ -148,7 +148,7 @@ public class BruteCollinearPoints {
      * @param points an array of points
      * @return a line segment of the first and last points in the given Point array
      */
-	protected LineSegment getEndPoints(Point[] points) {
+	private LineSegment getEndPoints(Point[] points) {
 		
 		return new LineSegment(points[0], points[3]);
 	}
