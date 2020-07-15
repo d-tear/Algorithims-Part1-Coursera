@@ -277,9 +277,10 @@ public class BruteCollinearPoints {
         Point d = new Point(4, 4);
         Point e = new Point(5,5);
         Point f = new Point(1,2);
+        Point g = new Point(6,6);
+        Point h = new Point(7,7);
         
-        
-        Point[] points = new Point[] {a,b,c,d,e,f};
+        Point[] points = new Point[] {a,b,c,d,e,f,g,h};
         
      // print and draw the line segments
         BruteCollinearPoints bcp = new BruteCollinearPoints(points);
@@ -288,13 +289,17 @@ public class BruteCollinearPoints {
         }
         
         
-       //stability of sorting
-      System.out.println(Arrays.toString(bcp.points));
-		
-      Arrays.parallelSort(bcp.points, bcp.points[1].slopeOrder());
-      		
-      System.out.println(Arrays.toString(bcp.points));
-        
+		/*
+		 * //stability of sorting System.out.println(Arrays.toString(bcp.points));
+		 * 
+		 * Arrays.parallelSort(bcp.points, bcp.points[1].slopeOrder());
+		 * 
+		 * System.out.println(Arrays.toString(bcp.points));
+		 * 
+		 * Arrays.parallelSort(bcp.points, bcp.points[2].slopeOrder());
+		 * 
+		 * System.out.println(Arrays.toString(bcp.points));
+		 */
         
         
 		//BruteCollinearPoints bcp = new BruteCollinearPoints(array);
