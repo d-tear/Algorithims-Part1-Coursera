@@ -39,9 +39,7 @@ public class BruteCollinearPoints {
 		//Arrays.parallelSort(this.points, this.points[0].slopeOrder());
 		
 		
-		
-		
-		
+
 		
 	}
 	
@@ -290,6 +288,13 @@ public class BruteCollinearPoints {
         }
         
         
+       //stability of sorting
+      System.out.println(Arrays.toString(bcp.points));
+		
+      Arrays.parallelSort(bcp.points, bcp.points[1].slopeOrder());
+      		
+      System.out.println(Arrays.toString(bcp.points));
+        
         
         
 		//BruteCollinearPoints bcp = new BruteCollinearPoints(array);
@@ -308,14 +313,16 @@ public class BruteCollinearPoints {
 		//System.out.println( Arrays.toString(bcp.points));
 		
 		
-		  for (Point[] p_array : bcp.fourTuples()) {
-		  
-		  if (bcp.allFourCollinear(p_array)) {
-		  System.out.println(Arrays.toString(p_array)); }
-		  
-		  
-		  
-		  }
+		/*
+		 * for (Point[] p_array : bcp.fourTuples()) {
+		 * 
+		 * if (bcp.allFourCollinear(p_array)) {
+		 * System.out.println(Arrays.toString(p_array)); }
+		 * 
+		 * 
+		 * 
+		 * }
+		 */
 		 
 		
 		//System.out.println(Arrays.toString(bcp.segments()));
