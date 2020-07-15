@@ -86,7 +86,13 @@ public class Point implements Comparable<Point>{
 	    	}
 	    	
 	    	else {
-	    	slope = (that.y - this.y)/(that.x - this.x);
+	    	Double y1 = (double) that.y;
+	    	Double x1 = (double) that.x;
+	    	
+	    	Double y0 = (double) this.y;
+	    	Double x0 = (double) this.x;
+	    	
+	    	slope = (y1 - y0)/(x1 - x0);
 	    	return slope;
 	    	}
 	    	
