@@ -123,7 +123,7 @@ public class BruteCollinearPoints {
 	
 	//determines if all points are equal (i.e. if any points have the same x AND y values)
 	//this is useful inside the constructor
-	private static boolean isRepeated(Point[] points ) {
+	protected static boolean isRepeated(Point[] points ) {
 		
 		for (int i = 0; i < points.length; i ++) {
 			
@@ -148,7 +148,7 @@ public class BruteCollinearPoints {
      * @param points an array of points
      * @return a line segment of the first and last points in the given Point array
      */
-	private LineSegment getEndPoints(Point[] points) {
+	protected LineSegment getEndPoints(Point[] points) {
 		
 		return new LineSegment(points[0], points[3]);
 	}
@@ -238,7 +238,7 @@ public class BruteCollinearPoints {
 	  
 	  }
 	  
-	  if (segments.size() == 0) { //only tripped if there were no collinear segments or only one
+	  if (segments.size() == 0) { //only tripped if there were no collinear segments or only one collinear segment (which we havent added yet)
 	  
 		  if (maxsegment == null) {
 			  //do nothing. there were no collinear segments of size >= 4
@@ -277,6 +277,7 @@ public class BruteCollinearPoints {
         Point b = new Point(3, 3);
         Point c = new Point(4, 4);
         Point d = new Point(2, 5);
+        
         
         Point[] points = new Point[] {a,b,c,d};
         
