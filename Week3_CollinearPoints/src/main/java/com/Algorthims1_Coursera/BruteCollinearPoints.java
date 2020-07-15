@@ -273,17 +273,19 @@ public class BruteCollinearPoints {
         //Point g = new Point(14000,15000);
         //Point h = new Point(6000,7000);
         
-		Point a = new Point(1,3);
-        Point b = new Point(3, 3);
-        Point c = new Point(4, 4);
-        Point d = new Point(2, 5);
+		Point a = new Point(1,1);
+        Point b = new Point(2, 2);
+        Point c = new Point(3, 3);
+        Point d = new Point(4, 4);
+        Point e = new Point(5,5);
+        Point f = new Point(1,2);
         
         
-        Point[] points = new Point[] {a,b,c,d};
+        Point[] points = new Point[] {a,b,c,d,e,f};
         
      // print and draw the line segments
-        BruteCollinearPoints collinear = new BruteCollinearPoints(points);
-        for (LineSegment segment : collinear.segments()) {
+        BruteCollinearPoints bcp = new BruteCollinearPoints(points);
+        for (LineSegment segment : bcp.segments()) {
             StdOut.println(segment);
         }
         
@@ -305,16 +307,16 @@ public class BruteCollinearPoints {
 		
 		//System.out.println( Arrays.toString(bcp.points));
 		
-		/*
-		 * for (Point[] p_array : bcp.fourTuples()) {
-		 * 
-		 * if (bcp.allFourCollinear(p_array)) {
-		 * System.out.println(Arrays.toString(p_array)); }
-		 * 
-		 * 
-		 * 
-		 * }
-		 */
+		
+		  for (Point[] p_array : bcp.fourTuples()) {
+		  
+		  if (bcp.allFourCollinear(p_array)) {
+		  System.out.println(Arrays.toString(p_array)); }
+		  
+		  
+		  
+		  }
+		 
 		
 		//System.out.println(Arrays.toString(bcp.segments()));
 		
