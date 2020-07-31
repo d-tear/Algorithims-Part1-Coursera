@@ -24,7 +24,7 @@ public class FastCollinearPoints {
 		
 		
 		//ensure the argument to the constructor contains no repeated points
-		if (BruteCollinearPoints.isRepeated(points)) throw new IllegalArgumentException("All points must be unique!");
+		if (FastCollinearPoints.isRepeated(points)) throw new IllegalArgumentException("All points must be unique!");
 		
 		
 		this.points = points.clone();
@@ -35,6 +35,26 @@ public class FastCollinearPoints {
 			
 		
 	}
+
+	//determines if all points are equal (i.e. if any points have the same x AND y values)
+		//this is useful inside the constructor
+	private static boolean isRepeated(Point[] points ) {
+		
+		for (int i = 0; i < points.length; i ++) {
+			
+			for (int j = i + 1; j < points.length; j ++) {
+				
+				if ( points[i].compareTo(points[j]) == 0 ) {return true;}
+				
+				
+			}
+		}
+		
+		return false;
+		
+	}
+	
+	
 	
 	public int numberOfSegments() { // the number of line segments
 	

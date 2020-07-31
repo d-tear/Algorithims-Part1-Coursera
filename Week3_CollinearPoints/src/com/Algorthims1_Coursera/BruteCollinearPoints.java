@@ -123,7 +123,7 @@ public class BruteCollinearPoints {
 	
 	//determines if all points are equal (i.e. if any points have the same x AND y values)
 	//this is useful inside the constructor
-	protected static boolean isRepeated(Point[] points ) {
+	private static boolean isRepeated(Point[] points ) {
 		
 		for (int i = 0; i < points.length; i ++) {
 			
