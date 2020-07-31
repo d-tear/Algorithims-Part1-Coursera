@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import edu.princeton.cs.algs4.Selection;
+import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.SET;
 
 public class BruteCollinearPoints {
@@ -260,77 +262,32 @@ public class BruteCollinearPoints {
 	 
 		 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		//Point a = new Point(10000,0);
-        //Point b = new Point(0, 10000);
-        //Point c = new Point(3000, 7000);
-        //Point d = new Point(7000, 3000);
-        //Point e = new Point(20000,21000);
-        //Point f = new Point(3000, 4000);
-        //Point g = new Point(14000,15000);
-        //Point h = new Point(6000,7000);
-        
-		Point a = new Point(1,1);
-        Point b = new Point(2, 2);
-        Point c = new Point(3, 3);
-        Point d = new Point(4, 4);
-        Point e = new Point(5,5);
-        Point f = new Point(1,2);
-        Point g = new Point(6,6);
-        Point h = new Point(7,7);
-        
-        Point[] points = new Point[] {a,b,c,d,e,f,g,h};
-        
-     // print and draw the line segments
-        BruteCollinearPoints bcp = new BruteCollinearPoints(points);
-        for (LineSegment segment : bcp.segments()) {
-            StdOut.println(segment);
-        }
-        
-        
-		/*
-		 * //stability of sorting System.out.println(Arrays.toString(bcp.points));
-		 * 
-		 * Arrays.parallelSort(bcp.points, bcp.points[1].slopeOrder());
-		 * 
-		 * System.out.println(Arrays.toString(bcp.points));
-		 * 
-		 * Arrays.parallelSort(bcp.points, bcp.points[2].slopeOrder());
-		 * 
-		 * System.out.println(Arrays.toString(bcp.points));
-		 */
-        
-        
-		//BruteCollinearPoints bcp = new BruteCollinearPoints(array);
-		
-		//System.out.println(Arrays.deepToString(bcp.fourTuples().toArray()));
-		
-		//System.out.println(bcp.fourTuples().size());
-		
-		//System.out.println(Arrays.toString(bcp.points));
-		
-		//Arrays.parallelSort(bcp.points, bcp.points[0].slopeOrder());
-		
-		//System.out.println(Arrays.toString(bcp.points));
-		
-		
-		//System.out.println( Arrays.toString(bcp.points));
-		
-		
-		/*
-		 * for (Point[] p_array : bcp.fourTuples()) {
-		 * 
-		 * if (bcp.allFourCollinear(p_array)) {
-		 * System.out.println(Arrays.toString(p_array)); }
-		 * 
-		 * 
-		 * 
-		 * }
-		 */
-		 
-		
-		//System.out.println(Arrays.toString(bcp.segments()));
+		// read the n points from a file
+	    In in = new In(args[0]);
+	    int n = in.readInt();
+	    Point[] points = new Point[n];
+	    for (int i = 0; i < n; i++) {
+	        int x = in.readInt();
+	        int y = in.readInt();
+	        points[i] = new Point(x, y);
+	    }
+
+	    // draw the points
+	    StdDraw.enableDoubleBuffering();
+	    StdDraw.setXscale(0, 32768);
+	    StdDraw.setYscale(0, 32768);
+	    for (Point p : points) {
+	        p.draw();
+	    }
+	    StdDraw.show();
+
+	    // print and draw the line segments
+	    BruteCollinearPoints collinear = new BruteCollinearPoints(points);
+	    for (LineSegment segment : collinear.segments()) {
+	        StdOut.println(segment);
+	        segment.draw();
+	    }
+	    StdDraw.show();
 		
 		 }
 }
