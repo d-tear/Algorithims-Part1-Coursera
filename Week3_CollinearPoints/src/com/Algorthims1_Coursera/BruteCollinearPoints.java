@@ -164,7 +164,7 @@ public class BruteCollinearPoints {
 	  //record origin/base point
 	  Point origin = this.points[0];//overall lowest point bc we ordered the points by natural order in the constructor
 	  
-	  int counter = 0; //useful for finding the very first collinear line segment
+	  int counter = 0; //useful for finding the very first and last collinear line segment
 
 	  double current_slope = Double.NaN; // use this to record the current slope
 	  
@@ -205,33 +205,47 @@ public class BruteCollinearPoints {
 		else if (point_array[0] == origin && point_array[0].slopeTo(point_array[1]) == current_slope){
 			
 			maxsegment = getEndPoints(point_array);
+			counter++;
 			
 		}
 		
 		
 		else if(point_array[0] != origin && point_array[0].slopeTo(point_array[1]) == current_slope) {
 			//do nothing. if this code block is tripped, it means we found a subsegment of the current maxsegment
+			counter++;
 		}
 		  
 		
-		//this is a new line segment with the existing origin. We can add the existing maxsegment to the array and update maxsegment
+		//this is a new and distinct line segment with the existing origin. We can add the existing maxsegment to the array and update maxsegment
 		else if(point_array[0] == origin && point_array[0].slopeTo(point_array[1]) != current_slope) {
 			
 			segments.add(maxsegment);
 			maxsegment = getEndPoints(point_array);
 			current_slope = origin.slopeTo(point_array[1]);
+			counter++;
 			
 		}
 	 
 		//new origin with new slope
-		else {
+		else if (point_array[0] != origin && point_array[0].slopeTo(point_array[1]) != current_slope) {
+			//add the  maxsegment for the previous origin and slope
 			segments.add(maxsegment);
+			//update origin, slope, and maxsegment for new origin and slope
 			origin = point_array[0];
 			maxsegment = getEndPoints(point_array);
 			current_slope = origin.slopeTo(point_array[1]);
+			
+			counter++;
+		}
+		
+		//if we are on the final collinear tuple in point_array, we require some additional logic
+		if (counter == point_array.length - 1) {
+			
+			segments.add(maxsegment);
+			
 		}
 	  
-	  
+	  counter++;
 	  
 	  } 
 	  
@@ -262,32 +276,23 @@ public class BruteCollinearPoints {
 	 
 		 
 	public static void main(String[] args) {
-		// read the n points from a file
-	    In in = new In(args[0]);
-	    int n = in.readInt();
-	    Point[] points = new Point[n];
-	    for (int i = 0; i < n; i++) {
-	        int x = in.readInt();
-	        int y = in.readInt();
-	        points[i] = new Point(x, y);
-	    }
-
-	    // draw the points
-	    StdDraw.enableDoubleBuffering();
-	    StdDraw.setXscale(0, 32768);
-	    StdDraw.setYscale(0, 32768);
-	    for (Point p : points) {
-	        p.draw();
-	    }
-	    StdDraw.show();
-
-	    // print and draw the line segments
-	    BruteCollinearPoints collinear = new BruteCollinearPoints(points);
-	    for (LineSegment segment : collinear.segments()) {
-	        StdOut.println(segment);
-	        segment.draw();
-	    }
-	    StdDraw.show();
-		
+		Point a = new Point(10000,0);
+        Point b = new Point(0, 10000);
+        Point c = new Point(3000, 7000);
+        Point c2 = new Point(7000, 3000);
+        Point d = new Point(20000, 21000);
+        Point e = new Point(3000,4000);
+        Point f = new Point(14000,15000);
+        Point g = new Point(6000, 7000);
+        
+        
+        
+        Point[] points = new Point[] {a,b,c,c2,d,e,f,g};
+        
+     // print and draw the line segments
+        BruteCollinearPoints bcp = new BruteCollinearPoints(points);
+        for (LineSegment segment : bcp.segments()) {
+            StdOut.println(segment);
+        }
 		 }
 }
