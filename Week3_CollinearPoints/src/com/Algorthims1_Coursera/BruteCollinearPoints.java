@@ -164,7 +164,9 @@ public class BruteCollinearPoints {
 	  //record origin/base point
 	  Point origin = this.points[0];//overall lowest point bc we ordered the points by natural order in the constructor
 	  
-	  int counter = 0; //useful for finding the very first and last collinear line segment
+	  int counter = 0; //useful for finding the very last collinear line segment
+	  
+	  int first_collinear = 0; //useful for recording the very first collinear tuple
 
 	  double current_slope = Double.NaN; // use this to record the current slope
 	  
@@ -182,9 +184,9 @@ public class BruteCollinearPoints {
 	
 	  //Arrays.parallelSort(point_array, origin.slopeOrder());
 
-		if (counter == 0) { //only enter if its the very first collinear segment
+		if (first_collinear == 0) { //only enter if its the very first collinear segment
 			
-			counter++;
+			first_collinear++;
 			
 			if (point_array[0] == origin) { //check if overall lowest point is the origin for this segment
 				maxsegment = getEndPoints(point_array);
@@ -205,14 +207,14 @@ public class BruteCollinearPoints {
 		else if (point_array[0] == origin && point_array[0].slopeTo(point_array[1]) == current_slope){
 			
 			maxsegment = getEndPoints(point_array);
-			counter++;
+			
 			
 		}
 		
 		
 		else if(point_array[0] != origin && point_array[0].slopeTo(point_array[1]) == current_slope) {
 			//do nothing. if this code block is tripped, it means we found a subsegment of the current maxsegment
-			counter++;
+			
 		}
 		  
 		
@@ -222,7 +224,7 @@ public class BruteCollinearPoints {
 			segments.add(maxsegment);
 			maxsegment = getEndPoints(point_array);
 			current_slope = origin.slopeTo(point_array[1]);
-			counter++;
+			
 			
 		}
 	 
@@ -235,32 +237,30 @@ public class BruteCollinearPoints {
 			maxsegment = getEndPoints(point_array);
 			current_slope = origin.slopeTo(point_array[1]);
 			
-			counter++;
+			
 		}
 		
-		//if we are on the final collinear tuple in point_array, we require some additional logic
-		if (counter == point_array.length - 1) {
-			
-			segments.add(maxsegment);
-			
-		}
 	  
-	  counter++;
+	  
 	  
 	  } 
 	  
 	  
+	  counter++;
 	  }
 	  
-	  if (segments.size() == 0) { //only tripped if there were no collinear segments or only one collinear segment (which we havent added yet)
 	  
-		  if (maxsegment == null) {
-			  //do nothing. there were no collinear segments of size >= 4
-		  }
-		  else{
-			  segments.add(maxsegment); //there was only one collinear segment of size >= 4
-			  }
-	  }
+	//add the final maxsegment
+	if (counter == fourTuples().size()) {
+						
+			segments.add(maxsegment);
+						
+	}
+	
+	
+	  
+	
+	  
 	  
 	  //convert ArrayList to Array
 	  LineSegment[] segs = new LineSegment[segments.size()];
@@ -289,10 +289,13 @@ public class BruteCollinearPoints {
         
         Point[] points = new Point[] {a,b,c,c2,d,e,f,g};
         
+
      // print and draw the line segments
         BruteCollinearPoints bcp = new BruteCollinearPoints(points);
         for (LineSegment segment : bcp.segments()) {
             StdOut.println(segment);
         }
+        
+        
 		 }
 }
