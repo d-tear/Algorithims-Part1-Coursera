@@ -30,7 +30,7 @@ public class FastCollinearPoints {
 		this.points = points.clone();
 		
 		
-		Arrays.parallelSort(this.points);
+		Arrays.sort(this.points);
 				
 			
 		
@@ -89,25 +89,45 @@ public class FastCollinearPoints {
 			Point origin = natOrderpoints[i];
 
 			//sort the remaining points by the slope they make with the current origin
-			Arrays.parallelSort(natOrderpoints, origin.slopeOrder());
+			Arrays.sort(natOrderpoints, origin.slopeOrder());
 	
 			
-			//only enter if i = 0. i.e. at the very beginning.
-			if (i == 0) {
-			//set the initial current_slope value
-			current_slope = origin.slopeTo(natOrderpoints[i+1]);
-			}
 			
-			for (int j = i + 1; j < natOrderpoints.length; j++) {
+			for (int j = 1; j < natOrderpoints.length; j++) {
 				
 				//the point we are comparing to the current origin
 				Point current_point = natOrderpoints[j];
+				
+				//
+				current_slope = origin.slopeTo(natOrderpoints[j]);
 				
 				//if slope is the same and the current point is greater than the current origin, we found a collinear point for the current collinear segment
 				if (origin.slopeTo(current_point) == current_slope && current_point.compareTo(origin) == +1) {
 
 					collinear_points++;
 					
+					//end of inner loop with this origin
+					if (j == natOrderpoints.length - 1) {
+						
+						if (collinear_points >= 4) {
+						
+						segment = new LineSegment(origin, natOrderpoints[j]); //grab endpoints of collinear segment. 
+						
+						segments.add(segment); //add the segment
+						
+						segment = null; //reset segment
+						
+						collinear_points = 1; //reset collinear points
+					}
+						
+						else {
+						segment = null; //reset segment
+							
+						collinear_points = 1; //reset collinear points
+							
+						}
+						
+					}
 
 				
 					}
@@ -149,23 +169,29 @@ public class FastCollinearPoints {
 				
 				
 				
-				//we've found a subsegment of a collinear segment we have already traversed
+				//we've found a subsegment of a collinear segment we have already traversed. break and examine the next origin
 				else if( origin.slopeTo(current_point) == current_slope && current_point.compareTo(origin) == -1){
 
 					collinear_points = 1; //reset collinear points
+					
+					break;
 
 
 				}
 				
 				
+				
+				
 			}
 			
-			collinear_points = 1;
+			
+			
+		
 			
 		}
 		
 		
-		//YOU NEED TO ADD CODE FOR HANDLING THE FINAL POINT!!!!!!!!!!!!!!!!
+		
 		
 		//convert ArrayList to Array
 		  LineSegment[] segs = new LineSegment[segments.size()];
@@ -182,16 +208,17 @@ public class FastCollinearPoints {
 		
 		
 		
-		//YOU NEED TO ADD CODE FOR HANDLING THE FINAL POINT. THE BELOW INPUT SHOULD RETURN ONE SEGMENT BUT IT ISNT RETURNING ANYTHING. THE SEGMENT ISNT BEING ADDED
+		
 		Point a = new Point(0,0);
         Point b = new Point(1, 1);
         Point c = new Point(2, 2);
         Point d = new Point(3, 3);
+        Point e = new Point(4,4);
         
         
         
         
-        Point[] points = new Point[] {a,b,c,d};
+        Point[] points = new Point[] {a,b,c,d,e};
         
 
      // print and draw the line segments
