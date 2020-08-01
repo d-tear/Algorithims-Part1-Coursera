@@ -283,10 +283,14 @@ public class BruteCollinearPoints {
         Point e = new Point(3000,4000);
         Point f = new Point(14000,15000);
         Point g = new Point(6000, 7000);
+        Point h= new Point(2000, 29000);
+        Point i = new Point(4000, 29000);
+        Point j = new Point(22000, 29000);
+        Point k = new Point(28000, 29000);
         
         
         
-        Point[] points = new Point[] {a,b,c,c2,d,e,f,g};
+        Point[] points = new Point[] {a,b,c,c2,d,e,f,g,h,i,j,k};
         
 
      // print and draw the line segments
