@@ -165,6 +165,8 @@ public class FastCollinearPoints {
 		}
 		
 		
+		//YOU NEED TO ADD CODE FOR HANDLING THE FINAL POINT!!!!!!!!!!!!!!!!
+		
 		//convert ArrayList to Array
 		  LineSegment[] segs = new LineSegment[segments.size()];
 		  
@@ -177,7 +179,10 @@ public class FastCollinearPoints {
 	}
 
 	public static void main(String[] args) {
-		// read the n points from a file
+		
+		
+		
+		//YOU NEED TO ADD CODE FOR HANDLING THE FINAL POINT. THE BELOW INPUT SHOULD RETURN ONE SEGMENT BUT IT ISNT RETURNING ANYTHING. THE SEGMENT ISNT BEING ADDED
 		Point a = new Point(0,0);
         Point b = new Point(1, 1);
         Point c = new Point(2, 2);
