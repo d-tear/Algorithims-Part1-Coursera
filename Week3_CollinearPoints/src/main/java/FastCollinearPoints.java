@@ -173,31 +173,25 @@ public class FastCollinearPoints {
 
 	public static void main(String[] args) {
 		// read the n points from a file
-	    In in = new In(args[0]);
-	    int n = in.readInt();
-	    Point[] points = new Point[n];
-	    for (int i = 0; i < n; i++) {
-	        int x = in.readInt();
-	        int y = in.readInt();
-	        points[i] = new Point(x, y);
-	    }
+		Point a = new Point(10000,0);
+        Point b = new Point(0, 10000);
+        Point c = new Point(3000, 7000);
+        Point c2 = new Point(7000, 3000);
+        Point d = new Point(20000, 21000);
+        Point e = new Point(3000,4000);
+        Point f = new Point(14000,15000);
+        Point g = new Point(6000, 7000);
+        
+        
+        
+        Point[] points = new Point[] {a,b,c,c2,d,e,f,g};
+        
 
-	    // draw the points
-	    StdDraw.enableDoubleBuffering();
-	    StdDraw.setXscale(0, 32768);
-	    StdDraw.setYscale(0, 32768);
-	    for (Point p : points) {
-	        p.draw();
-	    }
-	    StdDraw.show();
-
-	    // print and draw the line segments
-	    FastCollinearPoints collinear = new FastCollinearPoints(points);
-	    for (LineSegment segment : collinear.segments()) {
-	        StdOut.println(segment);
-	        segment.draw();
-	    }
-	    StdDraw.show();
+     // print and draw the line segments
+        BruteCollinearPoints bcp = new BruteCollinearPoints(points);
+        for (LineSegment segment : bcp.segments()) {
+            StdOut.println(segment);
+        }
         
 
 	}
