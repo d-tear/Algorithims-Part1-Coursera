@@ -1,4 +1,4 @@
-package com.Algorthims1_Coursera;
+
 
 /*************************************************************************
  *  Compilation:  javac LineSegment.java
