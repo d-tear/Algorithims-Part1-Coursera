@@ -107,6 +107,7 @@ public class FastCollinearPoints {
 				if (origin.slopeTo(current_point) == current_slope && current_point.compareTo(origin) == +1) {
 
 					collinear_points++;
+					
 
 				
 					}
@@ -145,6 +146,9 @@ public class FastCollinearPoints {
 					
 				}
 				
+				
+				
+				
 				//we've found a subsegment of a collinear segment we have already traversed
 				else if( origin.slopeTo(current_point) == current_slope && current_point.compareTo(origin) == -1){
 
@@ -160,6 +164,7 @@ public class FastCollinearPoints {
 			
 		}
 		
+		
 		//convert ArrayList to Array
 		  LineSegment[] segs = new LineSegment[segments.size()];
 		  
@@ -173,23 +178,20 @@ public class FastCollinearPoints {
 
 	public static void main(String[] args) {
 		// read the n points from a file
-		Point a = new Point(10000,0);
-        Point b = new Point(0, 10000);
-        Point c = new Point(3000, 7000);
-        Point c2 = new Point(7000, 3000);
-        Point d = new Point(20000, 21000);
-        Point e = new Point(3000,4000);
-        Point f = new Point(14000,15000);
-        Point g = new Point(6000, 7000);
+		Point a = new Point(0,0);
+        Point b = new Point(1, 1);
+        Point c = new Point(2, 2);
+        Point d = new Point(3, 3);
         
         
         
-        Point[] points = new Point[] {a,b,c,c2,d,e,f,g};
+        
+        Point[] points = new Point[] {a,b,c,d};
         
 
      // print and draw the line segments
-        BruteCollinearPoints bcp = new BruteCollinearPoints(points);
-        for (LineSegment segment : bcp.segments()) {
+        FastCollinearPoints fcp = new FastCollinearPoints(points);
+        for (LineSegment segment : fcp.segments()) {
             StdOut.println(segment);
         }
         
