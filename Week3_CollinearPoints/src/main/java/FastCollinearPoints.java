@@ -207,18 +207,24 @@ public class FastCollinearPoints {
 	public static void main(String[] args) {
 		
 		
-		
-		
+		//NEED TO HANDLE HORIZONTAL LINES. THE BELOW INPUT ONLY RETURNS (0,0) -> (4,4)
+		//However, if I ONLY include points a,f,g,h,i I do get the horizontal segment from (0,0) to (4,0)
+		//I think I need extra else if blocks to handle horizontal (and vertical) line segments
 		Point a = new Point(0,0);
         Point b = new Point(1, 1);
         Point c = new Point(2, 2);
         Point d = new Point(3, 3);
-        Point e = new Point(4,4);
+        Point e = new Point(4, 4);
+        Point f = new Point(1, 0);
+        Point g = new Point(2, 0);
+        Point h = new Point(3, 0);
+        Point i = new Point(4, 0);
         
         
         
         
-        Point[] points = new Point[] {a,b,c,d,e};
+        
+        Point[] points = new Point[] {a,b,f,g,h,i};
         
 
      // print and draw the line segments
