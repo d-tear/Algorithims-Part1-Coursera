@@ -102,7 +102,7 @@ public class FastCollinearPoints {
 				current_slope = origin.slopeTo(natOrderpoints[j]);
 				
 				//if slope is the same and the current point is greater than the current origin, we found a collinear point for the current collinear segment
-				if (origin.slopeTo(current_point) == current_slope && current_point.compareTo(origin) == +1) {
+				if (origin.slopeTo(current_point) == current_slope && current_point.compareTo(origin) > 0) {
 
 					collinear_points++;
 					
@@ -170,7 +170,7 @@ public class FastCollinearPoints {
 				
 				
 				//we've found a subsegment of a collinear segment we have already traversed. break and examine the next origin
-				else if( origin.slopeTo(current_point) == current_slope && current_point.compareTo(origin) == -1){
+				else if( origin.slopeTo(current_point) == current_slope && current_point.compareTo(origin) < 0){
 
 					collinear_points = 1; //reset collinear points
 					
